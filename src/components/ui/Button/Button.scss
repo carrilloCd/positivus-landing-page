@@ -9,6 +9,12 @@
   text-decoration: none;
   color: inherit;
 
+  &--primary {
+    border: none;
+    background-color: $secondary-color;
+    color: $tertiary-color;
+  }
+
   &--secondary {
     border: 1px solid $secondary-color;
   }
