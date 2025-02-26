@@ -1,0 +1,25 @@
+@use '../../../sass/abstract/variables' as *;
+
+.navbar {
+  margin: 0 auto;
+  margin-top: 3rem;
+  max-width: 120rem;
+  height: 6.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__menu {
+    width: 80rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.8rem;
+    line-height: 2.6rem;
+  }
+
+  &__item {
+    text-decoration: none;
+    color: $secondary-color;
+  }
+}

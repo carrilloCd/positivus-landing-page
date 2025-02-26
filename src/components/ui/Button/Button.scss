@@ -1,0 +1,15 @@
+@use '../../../sass/abstract/variables' as *;
+
+.btn {
+  display: inline-flex;
+  padding: 2rem 3.5rem;
+  border-radius: 1.4rem;
+  font-size: inherit;
+  line-height: inherit;
+  text-decoration: none;
+  color: inherit;
+
+  &--secondary {
+    border: 1px solid $secondary-color;
+  }
+}
