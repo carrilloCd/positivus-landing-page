@@ -1,0 +1,14 @@
+@use '../../../sass/abstract/variables' as *;
+
+.header {
+  max-width: 120rem;
+  margin: 14rem auto 8rem;
+  display: flex;
+  gap: 4rem;
+
+  &__subtitle {
+    width: 58rem;
+    display: flex;
+    align-items: space-between;
+  }
+}

@@ -1,13 +1,14 @@
 import { Navbar } from "@components/layout";
-import { HeroSection } from "@components/sections";
-import { SponsorsLogotypes } from "@components/ui";
+import { HeroSection, ServicesSection } from "@components/sections";
+import { Sponsors } from "@components/ui";
 
 export const App: React.FC = () => {
   return (
     <>
       <Navbar />
       <HeroSection />
-      <SponsorsLogotypes />
+      <Sponsors />
+      <ServicesSection />
     </>
   )
 }

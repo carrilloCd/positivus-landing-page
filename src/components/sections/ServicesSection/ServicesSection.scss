@@ -1,0 +1,11 @@
+.service-section {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding-bottom: 10rem;
+
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+  }
+}

@@ -1,4 +1,4 @@
-import './SponsorsLogotypes.scss';
+import './Sponsors.scss';
 import amazon from '@images/amazon-logo.png';
 import dribbble from '@images/dribbble-logo.png';
 import hubspot from '@images/hubspot-logo.png';
@@ -6,7 +6,7 @@ import notion from '@images/notion-logo.png';
 import netflix from '@images/netflix logo.png';
 import zoom from '@images/zoom-logo.png';
 
-export const SponsorsLogotypes: React.FC = () => {
+export const Sponsors: React.FC = () => {
   return (
     <section className='sponsors'>
       <img className='sponsors__logo' src={amazon} alt="Sponsor Logotype" />
