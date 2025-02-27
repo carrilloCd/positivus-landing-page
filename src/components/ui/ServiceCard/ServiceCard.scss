@@ -23,6 +23,9 @@
     border-radius: 0.7rem;
     padding: 0 0.7rem;
     box-decoration-break: clone;
+
+    background-color: $primary-color;
+    color: $secondary-color;
   }
 
   &__img {
@@ -44,6 +47,9 @@
       justify-content: center;
       align-items: center;
 
+      background-color: $secondary-color;
+      color: $primary-color;
+
       svg {
         fill: $primary-color;
       }
@@ -52,21 +58,6 @@
     &-text {
       font-size: 2rem;
       list-style: 2.8rem;
-    }
-  }
-
-  &--light {
-    .service-card__title span {
-      background-color: $primary-color;
-      color: $secondary-color;
-    }
-
-    .service-card__link-icon {
-      background-color: $secondary-color;
-      color: $primary-color;
-    }
-
-    .service-card__link-text {
       color: $secondary-color;
     }
   }
@@ -98,6 +89,27 @@
     .service-card__title span {
       background-color: $tertiary-color;
       color: $secondary-color;
+    }
+  }
+
+  &--dark-green {
+    background-color: $secondary-color;
+
+    .service-card__title span {
+      background-color: $primary-color;
+      color: $secondary-color;
+    }
+
+    .service-card__link-icon {
+      background-color: $tertiary-color;
+
+      svg {
+        fill: $secondary-color;
+      }
+    }
+
+    .service-card__link-text {
+      color: $tertiary-color;
     }
   }
 }

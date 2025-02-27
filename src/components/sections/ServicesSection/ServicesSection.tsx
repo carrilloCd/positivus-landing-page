@@ -16,13 +16,13 @@ export const ServicesSection: React.FC = () => {
       <Header title={title} subtitle={subtitle} />
 
       <div className="service-section__cards">
-        <ServiceCard title='Search engine optimization' illustration={seoIllustration} variant='light' />
+        <ServiceCard title='Search engine optimization' illustration={seoIllustration} />
 
         <ServiceCard title='Pay-per-click advertising' illustration={payIllustration} variant='green' />
         <ServiceCard title='Social Media Marketing' illustration={socialIllustration} variant='dark' />
-        <ServiceCard title='Email Marketing' illustration={emailIllustration} variant='light' />
+        <ServiceCard title='Email Marketing' illustration={emailIllustration} />
         <ServiceCard title='Content Creation' illustration={contentIllustration} variant='green' />
-        <ServiceCard title='Analytics and Tracking' illustration={analyticsIllustration} variant='dark' />
+        <ServiceCard title='Analytics and Tracking' illustration={analyticsIllustration} variant='dark-green' />
       </div>
     </section>
   )

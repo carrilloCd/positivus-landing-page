@@ -1,6 +1,6 @@
 import { Navbar } from "@components/layout";
 import { HeroSection, ServicesSection } from "@components/sections";
-import { Sponsors } from "@components/ui";
+import { Sponsors, CTA } from "@components/ui";
 
 export const App: React.FC = () => {
   return (
@@ -9,6 +9,7 @@ export const App: React.FC = () => {
       <HeroSection />
       <Sponsors />
       <ServicesSection />
+      <CTA />
     </>
   )
 }

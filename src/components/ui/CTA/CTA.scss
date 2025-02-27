@@ -1,0 +1,33 @@
+@use '../../../sass/abstract/variables' as *;
+
+.cta {
+  margin: 0 auto;
+  padding: 6rem;
+  max-width: 120rem;
+  height: 34.7rem;
+  border-radius: 1.2rem;
+  background-color: $tertiary-color;
+  margin-bottom: 8rem;
+
+  display: flex;
+  gap: 18.6rem;
+
+  &__title {
+    font-size: 3rem;
+    line-height: 3.8rem;
+  }
+
+  &__box-info {
+    width: 50rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.6rem;
+  }
+
+  &__illustration {
+    transform: scale(1.8);
+  }
+  .btn {
+    align-self: start;
+  }
+}

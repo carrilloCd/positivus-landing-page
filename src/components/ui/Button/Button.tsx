@@ -1,18 +1,17 @@
-import { ReactNode } from 'react'
+
+import { ReactNode } from 'react';
 import './Button.scss'
 
 interface IButtonProps {
   url?: string;
-  icon?: ReactNode;
-  text?: string;
+  text?: string | ReactNode;
   variant?: 'primary' | 'secondary';
   blank?: boolean;
 }
-export const Button: React.FC<IButtonProps> = ({ icon, text, variant, url, blank }) => {
+export const Button: React.FC<IButtonProps> = ({ text, variant, url, blank }) => {
   const ButtonContent = (
     <>
       {text && <span>{text}</span>}
-      {icon && <span>{icon}</span>}
     </>
   )
 

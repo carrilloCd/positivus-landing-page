@@ -3,7 +3,7 @@ import './ServiceCard.scss'
 interface IServiceCardProps {
   title: string;
   illustration: string;
-  variant: 'light' | 'dark' | 'green';
+  variant?: 'dark-green' | 'dark' | 'green';
 }
 
 export const ServiceCard: React.FC<IServiceCardProps> = ({ illustration, variant, title }) => {
