@@ -1,0 +1,28 @@
+@use '../../../sass/abstract/variables' as *;
+.case-study {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 6.4rem;
+  border-right: 1px solid #fff;
+
+  &:first-child {
+    padding-left: 0;
+  }
+
+  &:last-child {
+    border: none;
+    padding-right: 0;
+  }
+
+  &__description {
+    margin-bottom: 2rem;
+  }
+
+  &__link {
+    display: flex;
+    gap: 1.5rem;
+    text-decoration: none;
+    color: $primary-color;
+  }
+}

@@ -1,0 +1,18 @@
+@use '../../../sass/abstract/variables' as *;
+
+.case-studies {
+  max-width: 120rem;
+  margin: 0 auto;
+
+  &__block {
+    border-radius: 4.5rem;
+    padding: 7rem 6rem;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    // gap: 4.4rem;
+    background-color: $secondary-color;
+    color: #fff;
+  }
+}
