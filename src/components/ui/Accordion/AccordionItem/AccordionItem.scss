@@ -1,0 +1,52 @@
+@use '../../../../sass/abstract/variables' as *;
+
+.accordion {
+  &__item {
+    transition: all 0.2s;
+    border-radius: 4.5rem;
+    border: 1px solid $secondary-color;
+    padding: 4.1rem 6rem;
+    background-color: $tertiary-color;
+    box-shadow: 0 0.5rem 0 0 $secondary-color;
+
+    &.active {
+      background-color: $primary-color;
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 3rem;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    font-size: 3rem;
+    line-height: 3.8rem;
+  }
+
+  &__number {
+    font-size: 6rem;
+    line-height: 7.6rem;
+    margin-right: 1.9rem;
+  }
+
+  &__icon {
+    border-radius: 100%;
+    border: 1px solid $black-color;
+    width: 5.8rem;
+    height: 5.8rem;
+    align-self: center;
+    background-color: $tertiary-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__content {
+    border-top: 1px solid $black-color;
+    padding-top: 3rem;
+  }
+}

@@ -1,5 +1,5 @@
 
-import { ReactNode } from 'react';
+import { ReactEventHandler, ReactNode } from 'react';
 import './Button.scss'
 
 interface IButtonProps {
@@ -7,24 +7,21 @@ interface IButtonProps {
   text?: string | ReactNode;
   variant?: 'primary' | 'secondary';
   blank?: boolean;
+  className?: string;
+  onClick?: ReactEventHandler;
 }
-export const Button: React.FC<IButtonProps> = ({ text, variant, url, blank }) => {
-  const ButtonContent = (
-    <>
-      {text && <span>{text}</span>}
-    </>
-  )
+export const Button: React.FC<IButtonProps> = ({ text, variant, url, blank, onClick, className }) => {
 
   if (url) {
     return (
-      <a href={url} className={`btn btn--${variant}`} target={blank ? '_blank' : '_self'} rel="noopener noreferrer">
-        {ButtonContent}
+      <a href={url} className={`btn btn--${variant} ${className}`} target={blank ? '_blank' : '_self'} rel="noopener noreferrer">
+        {text}
       </a>)
   }
 
   return (
-    <button className={`btn btn--${variant}`}>
-      {ButtonContent}
+    <button onClick={onClick} className={`btn btn--${variant} ${className}`}>
+      {text}
     </button>
   )
 

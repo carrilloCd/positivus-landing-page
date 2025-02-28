@@ -10,10 +10,19 @@ body {
   color: $secondary-color;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+  color: $black-color;
+}
+
 h1 {
   font-size: 6rem;
   line-height: 7.6rem;
-  font-weight: 500;
 }
 h2 {
   border-radius: 0.7rem;
@@ -21,17 +30,14 @@ h2 {
   display: inline-block;
   font-size: 4rem;
   line-height: 5.1rem;
-  font-weight: 500;
   background-color: $primary-color;
 }
 h3 {
   font-size: 3rem;
   line-height: 3.8rem;
-  font-weight: 500;
 }
 
 h4 {
   font-size: 2rem;
   line-height: 2.5rem;
-  font-weight: 500;
 }
