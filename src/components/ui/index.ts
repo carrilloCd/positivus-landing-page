@@ -5,3 +5,4 @@ export * from './ServiceCard/ServiceCard';
 export * from './CTA/CTA';
 export * from './CaseStudy/CaseStudy';
 export * from './Accordion/Accordion';
+export * from './Card/Card';

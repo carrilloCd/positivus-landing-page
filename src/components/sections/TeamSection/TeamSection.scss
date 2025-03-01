@@ -1,0 +1,19 @@
+@use '../../../sass/abstract/variables' as *;
+
+.team-section {
+  max-width: 120rem;
+  margin: 0 auto;
+  position: relative;
+
+  &__cards {
+    margin-bottom: 4rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+  }
+
+  &__button {
+    position: absolute;
+    right: 0;
+  }
+}

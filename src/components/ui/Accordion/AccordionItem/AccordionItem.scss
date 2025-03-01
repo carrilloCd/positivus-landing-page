@@ -11,13 +11,16 @@
 
     &.active {
       background-color: $primary-color;
+
+      .accordion__header {
+        padding-bottom: 3rem;
+      }
     }
   }
 
   &__header {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 3rem;
   }
 
   &__title {

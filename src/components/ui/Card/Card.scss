@@ -1,0 +1,40 @@
+@use '../../../sass/abstract/variables' as *;
+.card {
+  border-radius: 4.5rem;
+  border: 1px solid $black-color;
+  padding: 4rem 3.5rem;
+  box-shadow: 0 0.5rem 0 0 $black-color;
+
+  &__header {
+    margin-bottom: 2.8rem;
+    position: relative;
+    display: flex;
+    gap: 2rem;
+  }
+
+  &__box {
+    align-self: flex-end;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 100%;
+    width: 3.4rem;
+    height: 3.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $secondary-color;
+
+    svg {
+      margin-top: -0.2px;
+    }
+  }
+
+  &__description {
+    border-top: 1px solid $black-color;
+    padding-top: 2.8rem;
+  }
+}
