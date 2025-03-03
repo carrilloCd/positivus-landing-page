@@ -6,3 +6,5 @@ export * from './CTA/CTA';
 export * from './CaseStudy/CaseStudy';
 export * from './Accordion/Accordion';
 export * from './Card/Card';
+export * from './TestimonialCard/TestimonialCard';
+export * from './Carousel/Carousel';

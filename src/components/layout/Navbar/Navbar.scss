@@ -10,16 +10,22 @@
   align-items: center;
 
   &__menu {
-    width: 80rem;
+    width: 81rem;
     display: flex;
-    justify-content: space-between;
+    gap: 4rem;
     align-items: center;
-    font-size: 1.8rem;
-    line-height: 2.6rem;
+    font-size: 2rem;
+    line-height: 2.8rem;
   }
 
   &__item {
     text-decoration: none;
     color: $secondary-color;
+    letter-spacing: 0.1px;
+  }
+
+  &__button {
+    flex: 1;
+    letter-spacing: 0.7px;
   }
 }

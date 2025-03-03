@@ -1,0 +1,66 @@
+@use '../../../sass/abstract/variables' as *;
+
+.carousel {
+  position: absolute;
+  left: -30%;
+  background-color: transparent;
+  max-width: 192rem;
+  height: 47.3rem;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12.4rem;
+
+  &__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+  }
+
+  &__navigation {
+    width: 50rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18.9rem;
+
+    button {
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+
+      svg {
+        // color: $white-color;
+        transition: all 0.3s;
+        fill: $white-color;
+      }
+
+      & svg:hover {
+        fill: #b9ff66;
+        // color: #b9ff66;
+      }
+    }
+  }
+
+  &__indicators {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__indicator {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    margin: 0 0.5rem;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+    transition: background 0.3s;
+
+    &.active {
+      background-color: #b9ff66;
+    }
+  }
+}

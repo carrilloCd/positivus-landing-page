@@ -14,8 +14,8 @@ export const CaseStudiesSection: React.FC = () => {
 
 
       <div className='case-studies__block'>
-        {caseStudiesDescription.map(description => (
-          <CaseStudy description={description} />
+        {caseStudiesDescription.map((description, index) => (
+          <CaseStudy description={description} key={index} />
         ))}
       </div>
     </section>

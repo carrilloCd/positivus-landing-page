@@ -1,0 +1,23 @@
+@use '../../../sass/abstract/variables' as *;
+
+.testimonial-card {
+  width: 60.6rem;
+  height: 33.5rem;
+  background-color: $secondary-color;
+  color: $tertiary-color;
+
+  &__text {
+    padding: 4.8rem 5.2rem 5.2rem;
+    border-radius: 4.5rem;
+    border: 2px solid $primary-color;
+    // clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 41% 76%, 29% 91%, 16% 75%, 0% 75%);
+  }
+
+  &__title {
+    color: $primary-color;
+  }
+
+  & div {
+    padding: 2rem 8rem 0;
+  }
+}

@@ -23,6 +23,7 @@ export const Accordion: React.FC<IAccordionProps> = ({ data }) => {
             num={i}
             onOpen={setIsOpen}
             curOpen={curOpen}
+            key={el.title}
           />
         ))
       }
