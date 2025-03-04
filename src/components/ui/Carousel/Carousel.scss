@@ -2,7 +2,7 @@
 
 .carousel {
   position: absolute;
-  left: -30%;
+  left: -36%;
   background-color: transparent;
   max-width: 192rem;
   height: 47.3rem;
@@ -12,11 +12,22 @@
   align-items: center;
   gap: 12.4rem;
 
-  &__content {
+  &__viewport {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &__slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    gap: 5rem;
+  }
+
+  &__slide {
+    flex: 0 0 30%;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5rem;
   }
 
   &__navigation {
@@ -32,14 +43,12 @@
       border: none;
 
       svg {
-        // color: $white-color;
         transition: all 0.3s;
         fill: $white-color;
       }
 
-      & svg:hover {
+      &:hover svg {
         fill: #b9ff66;
-        // color: #b9ff66;
       }
     }
   }
