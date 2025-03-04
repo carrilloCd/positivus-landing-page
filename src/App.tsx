@@ -1,5 +1,5 @@
 import { Navbar } from "@components/layout";
-import { HeroSection, ServicesSection, CaseStudiesSection, WorkingProcess, TeamSection, TestimonialsSection } from "@components/sections";
+import { HeroSection, ServicesSection, CaseStudiesSection, WorkingProcess, TeamSection, TestimonialsSection, ContactSection } from "@components/sections";
 import { Sponsors, CTA } from "@components/ui";
 
 export const App: React.FC = () => {
@@ -14,6 +14,7 @@ export const App: React.FC = () => {
       <WorkingProcess />
       <TeamSection />
       <TestimonialsSection />
+      <ContactSection />
     </>
   )
 }

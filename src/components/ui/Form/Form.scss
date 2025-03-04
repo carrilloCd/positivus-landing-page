@@ -1,0 +1,96 @@
+@use '../../../sass/abstract/variables' as *;
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 55.6rem;
+
+  &__radios-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4rem;
+    gap: 3.5rem;
+  }
+
+  &__radio-group {
+    display: flex;
+    align-items: center;
+    height: 2.8rem;
+  }
+
+  &__radio-span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    border: 1px solid $black-color;
+    margin-right: 1.4rem;
+    position: relative;
+
+    &::after {
+      content: '';
+      transition: all 0.2s;
+      display: block;
+      width: 1.6rem;
+      height: 1.6rem;
+      border-radius: 50%;
+    }
+  }
+
+  &__radio-label {
+    cursor: pointer;
+  }
+
+  &__radio-input {
+    display: none;
+
+    &:checked ~ .contact-form__radio-span::after {
+      background-color: $primary-color;
+    }
+  }
+
+  &__input-box {
+    display: flex;
+    flex-direction: column;
+
+    &:not(:last-child) {
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  &__input {
+    border: 1px solid $secondary-color;
+    border-radius: 1.4rem;
+    padding: 1.8rem 3rem;
+    outline: none;
+    line-height: 2.3rem;
+    font-size: 1.8rem;
+
+    &::placeholder {
+      color: #898989;
+    }
+  }
+
+  &__label {
+    font-size: 1.6rem;
+    line-height: 2.8rem;
+  }
+
+  &__textarea {
+    border: 1px solid $black-color;
+    height: 19rem;
+    padding: 1.8rem 3rem;
+    border-radius: 1.4rem;
+    resize: none;
+    font-size: 1.8rem;
+    line-height: 2.3rem;
+    margin-bottom: 4rem;
+    outline: none;
+  }
+
+  &__button {
+    display: inline-block;
+  }
+}

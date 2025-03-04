@@ -8,3 +8,4 @@ export * from './Accordion/Accordion';
 export * from './Card/Card';
 export * from './TestimonialCard/TestimonialCard';
 export * from './Carousel/Carousel';
+export * from './Form/Form';
