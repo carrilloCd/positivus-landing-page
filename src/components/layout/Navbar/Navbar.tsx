@@ -2,20 +2,21 @@ import './Navbar.scss'
 
 import logo from '../../../assets/images/logo.png'
 import { Button } from '@components/ui'
+import { NavLink, Link } from 'react-router'
 
 export const Navbar: React.FC = () => {
   return (
     <div className='navbar'>
-      <div className="logo">
+      <Link to={'/'} className="logo">
         <img src={logo} alt="Logo" />
-      </div>
+      </Link>
 
       <nav className="navbar__menu">
-        <a href="#about" className='navbar__item'>About us</a>
-        <a href="#services" className='navbar__item'>Services</a>
-        <a href="#use-cases" className='navbar__item'>Use Cases</a>
-        <a href="#pricing" className='navbar__item'>Pricing</a>
-        <a href="#blog" className='navbar__item'>Blog</a>
+        <NavLink to={"/about"} className='navbar__item'>About us</NavLink>
+        <NavLink to={"/services"} className='navbar__item'>Services</NavLink>
+        <NavLink to={"/use-cases"} className='navbar__item'>Use Cases</NavLink>
+        <NavLink to={"/pricing"} className='navbar__item'>Pricing</NavLink>
+        <NavLink to={"/blog"} className='navbar__item'>Blog</NavLink>
         <Button variant='secondary' text='Request a quote' />
       </nav>
     </div>

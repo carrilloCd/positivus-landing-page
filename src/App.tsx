@@ -1,21 +1,17 @@
-import { Footer, Navbar } from "@components/layout";
-import { HeroSection, ServicesSection, CaseStudiesSection, WorkingProcess, TeamSection, TestimonialsSection, ContactSection } from "@components/sections";
-import { Sponsors, CTA } from "@components/ui";
+import { BrowserRouter, Routes, Route } from 'react-router';
+import { AboutUsPage, HomePage, BlogPage, PricingPage, ServicesPage, UseCasesPage } from './pages';
 
 export const App: React.FC = () => {
   return (
-    <>
-      <Navbar />
-      <HeroSection />
-      <Sponsors />
-      <ServicesSection />
-      <CTA />
-      <CaseStudiesSection />
-      <WorkingProcess />
-      <TeamSection />
-      <TestimonialsSection />
-      <ContactSection />
-      <Footer />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<HomePage />} />
+        <Route path='about' element={<AboutUsPage />} />
+        <Route path='services' element={<ServicesPage />} />
+        <Route path='use-cases' element={<UseCasesPage />} />
+        <Route path='pricing' element={<PricingPage />} />
+        <Route path='blog' element={<BlogPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
