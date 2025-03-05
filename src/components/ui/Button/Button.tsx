@@ -5,7 +5,7 @@ import './Button.scss'
 interface IButtonProps {
   url?: string;
   text?: string | ReactNode;
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'tertiary';
   blank?: boolean;
   className?: string;
   onClick?: () => void;
