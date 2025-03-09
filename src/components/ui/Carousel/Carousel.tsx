@@ -1,101 +1,161 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, ReactNode } from "react";
 import "./Carousel.scss";
 
-interface ICarouselProps {
-  children: React.ReactNode[]; // Array de slides (TestimonialCard u otros)
+interface CarouselProps {
+  children: ReactNode[];
+  showItems?: number;
+  infiniteLoop?: boolean;
+  autoPlay?: boolean;
+  interval?: number;
+  renderFooter?: (arg0: {
+    currentIndex: number;
+    totalOriginalItems: number;
+    goToSlide: (index: number) => void;
+    goToPrev: () => void;
+    goToNext: () => void;
+    infiniteLoop: boolean;
+    maxIndex: number;
+  }) => React.ReactNode;
+  overflowWidth?: number;
 }
 
-export const Carousel: React.FC<ICarouselProps> = ({ children }) => {
-  const slideCount = children.length;
-  // Creamos los clones: [último, ...children, primero]
-  const slides = [children[slideCount - 1], ...children, children[0]];
-
-  // Inicializamos el índice en 1 (primer slide real)
+export const Carousel: React.FC<CarouselProps> = ({
+  children,
+  overflowWidth = 200,
+  showItems = 3,
+  infiniteLoop = true,
+  autoPlay = false,
+  interval = 3000,
+  renderFooter = () => null,
+}) => {
   const [currentIndex, setCurrentIndex] = useState(1);
-  // Estado para controlar si la transición está activada
-  const [transitionEnabled, setTransitionEnabled] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const originalItems = children;
+  const totalOriginalItems = originalItems.length;
 
-  const handleNext = () => {
-    setCurrentIndex((prev) => prev + 1);
-  };
+  // Generate a circular array that always has at least showItems elements
+  const generateItems = () => {
+    if (totalOriginalItems === 0) return [];
 
-  const handlePrev = () => {
-    setCurrentIndex((prev) => prev - 1);
-  };
+    // Create a circular array by repeating items as needed
+    const items: ReactNode[] = [...originalItems];
 
-  const handleTransitionEnd = () => {
-    // Si llegamos al clon del primer slide, saltamos al primer slide real
-    if (currentIndex === slides.length - 1) {
-      setTransitionEnabled(false);
-      setCurrentIndex(1);
+    // Keep adding items until we have at least 2x showItems + buffer
+    while (items.length < showItems * 3) {
+      items.push(...originalItems);
     }
-    // Si llegamos al clon del último slide, saltamos al último slide real
-    if (currentIndex === 0) {
-      setTransitionEnabled(false);
-      setCurrentIndex(slideCount);
+
+    return items;
+  };
+
+  const displayItems = generateItems();
+
+  // Calculate total possible slides
+  const maxIndex = infiniteLoop
+    ? Math.max(totalOriginalItems - 1, 0)
+    : Math.max(0, totalOriginalItems - showItems);
+
+  // Ensure we don't go beyond the valid index range
+  const safeIndex = (index: number) => {
+    if (infiniteLoop) {
+      // For infinite loop, wrap around but respect original items count
+      if (index < 0) return totalOriginalItems - 1;
+      if (index >= totalOriginalItems) return 0;
+      return index;
+    } else {
+      // For finite carousel, clamp between 0 and max
+      if (index < 0) return 0;
+      if (index > maxIndex) return maxIndex;
+      return index;
     }
   };
 
-  // Reactivamos la transición después de ajustar el índice sin animación
+  const goToSlide = useCallback(
+    (index: number) => {
+      if (isTransitioning || totalOriginalItems === 0) return;
+      setIsTransitioning(true);
+      setCurrentIndex(safeIndex(index));
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 500); // Match this duration with CSS transition
+    },
+    [isTransitioning, totalOriginalItems]
+  );
+
+  const goToNext = () => goToSlide(currentIndex + 1);
+  const goToPrev = () => goToSlide(currentIndex - 1);
+
   useEffect(() => {
-    if (!transitionEnabled) {
-      const timeoutId = setTimeout(() => {
-        setTransitionEnabled(true);
-      }, 50);
-      return () => clearTimeout(timeoutId);
+    let timer: NodeJS.Timeout;
+    if (autoPlay && !isTransitioning && totalOriginalItems > 1) {
+      timer = setTimeout(goToNext, interval);
     }
-  }, [transitionEnabled]);
+    return () => clearTimeout(timer);
+  }, [
+    currentIndex,
+    autoPlay,
+    interval,
+    isTransitioning,
+    totalOriginalItems,
+    goToNext,
+  ]);
+
+  // Calculate the translation percentage based on current index
+  // We use modulo to handle infinite scrolling properly
+  const translateValue = `-${(currentIndex % totalOriginalItems) * (100 / showItems)
+    }%`;
+
+  // If no items, don't render the carousel
+  if (totalOriginalItems === 0) {
+    return null;
+  }
+
+  const getExtraTranslate = () => {
+    if (currentIndex === 0) {
+      return -overflowWidth;
+    } else if (currentIndex === originalItems.length - 1) {
+      return overflowWidth;
+    }
+    return 0;
+  };
 
   return (
     <div className="carousel">
-      <div className="carousel__viewport">
-        <div
-          className="carousel__slides"
-          style={{
-            transform: `translateX(calc(-${currentIndex * 32.34}% + 35%))`,
-            transition: transitionEnabled ? "transform 0.5s ease-in-out" : "none",
-          }}
-          onTransitionEnd={handleTransitionEnd}
-        >
-          {slides.map((slide, index) => (
-            <div key={index} className="carousel__slide">
-              {slide}
-            </div>
-          ))}
+      <div className="carousel__wrapper" style={{
+        width: `calc(100% + ${overflowWidth}px * 2)`,
+        left: `-${overflowWidth}px`,
+      }}>
+        <div className="carousel__content">
+          <div
+            className="carousel__track"
+            style={{
+              transform: `translateX(calc(${translateValue} - ${getExtraTranslate()}px))`,
+              transition: isTransitioning ? "transform 0.5s ease" : "none",
+              gridTemplateColumns: `repeat(${displayItems.length}, calc(${100 / showItems
+                }%))`,
+            }}
+          >
+            {displayItems.map((child, index) => (
+              <div
+                key={`carousel-item-${index}`}
+                className={`carousel__item`}
+              >
+                {child}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-
-      <div className="carousel__navigation">
-        <button onClick={handlePrev} className="carousel__arrow carousel__arrow--left">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M22 13.5C22.8284 13.5 23.5 12.8284 23.5 12C23.5 11.1716 22.8284 10.5 22 10.5L22 13.5ZM0.939341 10.9393C0.353554 11.5251 0.353554 12.4749 0.93934 13.0607L10.4853 22.6066C11.0711 23.1924 12.0208 23.1924 12.6066 22.6066C13.1924 22.0208 13.1924 21.0711 12.6066 20.4853L4.12132 12L12.6066 3.51472C13.1924 2.92893 13.1924 1.97918 12.6066 1.3934C12.0208 0.807611 11.0711 0.807611 10.4853 1.3934L0.939341 10.9393ZM22 10.5L2 10.5L2 13.5L22 13.5L22 10.5Z"
-              fill="inherit"
-              fillOpacity="0.3"
-            />
-          </svg>
-        </button>
-
-        <div className="carousel__indicators">
-          {children.map((_, index) => (
-            <span
-              key={index}
-              className={`carousel__indicator ${index + 1 === currentIndex ||
-                (currentIndex === 0 && index === slideCount - 1) ? "active" : ""
-                }`}
-              onClick={() => setCurrentIndex(index + 1)}
-            />
-          ))}
-        </div>
-
-        <button onClick={handleNext} className="carousel__arrow carousel__arrow--right">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M2 10.5C1.17157 10.5 0.5 11.1716 0.5 12C0.5 12.8284 1.17157 13.5 2 13.5L2 10.5ZM23.0607 13.0607C23.6464 12.4749 23.6464 11.5251 23.0607 10.9393L13.5147 1.3934C12.9289 0.807613 11.9792 0.807613 11.3934 1.3934C10.8076 1.97919 10.8076 2.92893 11.3934 3.51472L19.8787 12L11.3934 20.4853C10.8076 21.0711 10.8076 22.0208 11.3934 22.6066C11.9792 23.1924 12.9289 23.1924 13.5147 22.6066L23.0607 13.0607ZM2 13.5L22 13.5L22 10.5L2 10.5L2 13.5Z"
-              fill="inherit"
-            />
-          </svg>
-        </button>
+      <div>
+        {renderFooter({
+          currentIndex,
+          totalOriginalItems,
+          goToSlide,
+          goToPrev,
+          goToNext,
+          infiniteLoop,
+          maxIndex,
+        })}
       </div>
     </div>
   );

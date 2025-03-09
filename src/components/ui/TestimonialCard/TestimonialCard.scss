@@ -1,9 +1,8 @@
 @use '../../../sass/abstract/variables' as *;
 
 .testimonial-card {
-  width: 60.6rem;
+  padding: 2.8rem;
   height: 33.5rem;
-  background-color: $secondary-color;
   color: $tertiary-color;
 
   &__text {
